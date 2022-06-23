@@ -1,49 +1,40 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useContext, useRef, MouseEvent } from "react";
-import { Button, Col, Container, Form, Navbar, Row } from "react-bootstrap";
-import { AuthContext } from "../Context/AuthContext";
+import React, { useRef, MouseEvent, useState } from "react";
+import { Button, Col, Container, Form, Navbar, Row, Alert} from "react-bootstrap";
 import { auth } from "../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-  GoogleAuthProvider,
-  signInWithPopup,
 } from "firebase/auth";
 
 const Signup:React.FC = () => {
-  const user = useContext(AuthContext);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const createAccount = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // setError("");
+    setError("");
     try {
       await createUserWithEmailAndPassword( auth, emailRef.current!.value, passwordRef.current!.value);
-      // useNavigate("/");
+      navigate("/Login");
     } catch (err:any) {
-      // setError(err.message);
+      setError(err.message);
     }
   };
 
   const signIn = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // setError("");
+    setError("");
     try {
       await signInWithEmailAndPassword( auth, emailRef.current!.value, passwordRef.current!.value);
-      // useNavigate("/");
+      navigate("/");
     } catch (err:any) {
-      // setError(err.message);
+      setError(err.message);
     }
   };
   
-  
-  const signOut = async () => {
-    await auth.signOut();
-  };
-
   return (
     <>
     <Navbar className="justify-content-between" bg="dark" variant="dark">
@@ -52,6 +43,7 @@ const Signup:React.FC = () => {
     <Container style={{ maxWidth: "500px" }} fluid>
       <Form className="mt-4">
         <Form.Group controlId="formEmail">
+        {error && <Alert variant="danger">{error}</Alert>}
           <Form.Label>Email</Form.Label>
           <Form.Control ref={emailRef} type="email" placeholder="email" />
         </Form.Group>
@@ -61,13 +53,14 @@ const Signup:React.FC = () => {
         </Form.Group>
         <Row>
           <Col xs={6}>
-            <Button onClick={createAccount} type="button" >
+            <Button onClick={createAccount} type="button" style={{background: "#2b8be5"}}>
               Sign Up
             </Button>
           </Col>
-          <Col xs={6}>
-            <Button onClick={signIn} type="button" variant="secondary" >
-              Sign In
+          <Col xs={5}>
+          Already have an account?
+            <Button onClick={signIn} type="button" variant="secondary" style={{background: "#2b8be5"}}>
+            <Link to="/Login">Log In</Link>
             </Button>
           </Col>
         </Row>

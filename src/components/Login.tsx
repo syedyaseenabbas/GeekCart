@@ -1,35 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, MouseEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import GoogleButton from "react-google-button";
-import { useUserAuth } from "../Context/UserAuthContext";
+import { auth } from "../firebase";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 
-const Login = () => {
+const Login:React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  // const { logIn, googleSignIn }:any = useUserAuth();
   const navigate = useNavigate();
+  const googleAuthProvider = new GoogleAuthProvider();
 
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+  const gooleSignIn = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setError("");
     try {
-      // await logIn(email, password);
-      navigate("/home");
+      await signInWithPopup( auth, googleAuthProvider);
+      navigate("/");
     } catch (err:any) {
       setError(err.message);
     }
   };
 
-  const handleGoogleSignIn = async (e:React.FormEvent<HTMLFormElement>) => {
+  const signIn = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setError("");
     try {
-      // await googleSignIn();
-      navigate("/home");
-    } catch (error:any) {
-      console.log(error.message);
+      await signInWithEmailAndPassword( auth, email, password );
+      navigate("/");
+    } catch (err:any) {
+      setError(err.message);
     }
   };
 
@@ -38,7 +43,7 @@ const Login = () => {
       <div className="p-4 box">
         <h2 className="mb-3">Login</h2>
         {error && <Alert variant="danger">{error}</Alert>}
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
               type="email"
@@ -56,18 +61,16 @@ const Login = () => {
           </Form.Group>
 
           <div className="d-grid gap-2">
-            <Button variant="primary" value="Submit">
+            <Button onClick={signIn} variant="primary" value="Submit">
               Log In
             </Button>
           </div>
         </Form>
         <hr />
         <div>
-          <GoogleButton
-            className="g-btn"
-            type="dark"
-            // onClick={handleGoogleSignIn}
-          />
+        <Button onClick={gooleSignIn} variant="primary" value="Submit">
+              Google Login
+            </Button>
         </div>
       </div>
       <div className="p-4 box mt-3 text-center">
