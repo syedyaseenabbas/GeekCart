@@ -14,7 +14,6 @@ const App:React.FC = ()=> {
         <Route path='/SignUp' element={<Signup/>} />
     </Routes>
     </BrowserRouter>
-    // <Home/>
   );
 }
 
