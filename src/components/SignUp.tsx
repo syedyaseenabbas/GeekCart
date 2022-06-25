@@ -49,16 +49,18 @@ const Signup:React.FC = () => {
           <Form.Control ref={passwordRef} type="password" placeholder="password" />
         </Form.Group>
         <Row>
-          <Col xs={6}>
+          <Col xs={4}>
             <Button onClick={createAccount} type="button" style={{background: "#2b8be5"}}>
               Sign Up
             </Button>
           </Col>
-          <Col xs={5}>
+          <Col xs={8} className="d-flex justify-content-end align-items-center">
           Already have an account?
-            <Button onClick={signIn} type="button" variant="secondary" style={{background: "#2b8be5"}}>
-            <Link to="/Login">Log In</Link>
+          <Link to="/Login">
+            <Button type="button" variant="secondary" style={{background: "#2b8be5"}}>
+            Log In
             </Button>
+            </Link>
           </Col>
         </Row>
       </Form>
