@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useRef, MouseEvent, useState } from "react";
 import { Button, Col, Container, Form, Navbar, Row, Alert} from "react-bootstrap";
 import { auth } from "../firebase";
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
+import {createUserWithEmailAndPassword} from "firebase/auth";
 
 const Signup:React.FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -16,17 +16,6 @@ const Signup:React.FC = () => {
     try {
       await createUserWithEmailAndPassword( auth, emailRef.current!.value, passwordRef.current!.value);
       navigate("/Login");
-    } catch (err:any) {
-      setError(err.message);
-    }
-  };
-
-  const signIn = async (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await signInWithEmailAndPassword( auth, emailRef.current!.value, passwordRef.current!.value);
-      navigate("/");
     } catch (err:any) {
       setError(err.message);
     }
