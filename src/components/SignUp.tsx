@@ -39,17 +39,12 @@ const Signup:React.FC = () => {
         </Form.Group>
         <Row>
           <Col xs={4}>
-            <Button onClick={createAccount} type="button" style={{background: "#2b8be5"}}>
+            <Button onClick={createAccount} className="mt-10" type="button" style={{background: "#2b8be5",marginTop:"10px"}}>
               Sign Up
             </Button>
           </Col>
           <Col xs={8} className="d-flex justify-content-end align-items-center">
-          Already have an account?
-          <Link to="/Login">
-            <Button type="button" variant="secondary" style={{background: "#2b8be5"}}>
-            Log In
-            </Button>
-            </Link>
+            Already have an account? <Link to="/Login">Login</Link>
           </Col>
         </Row>
       </Form>
