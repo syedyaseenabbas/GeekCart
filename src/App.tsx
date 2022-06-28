@@ -4,9 +4,9 @@ import {Routes, Route, BrowserRouter} from "react-router-dom"
 import Login from "./components/Login";
 import Signup from './components/SignUp';
 
-
 const App:React.FC = ()=> {
   return (
+    
     <BrowserRouter>
     <Routes>
         <Route path='/' element={<Home/>} />
@@ -14,6 +14,7 @@ const App:React.FC = ()=> {
         <Route path='/SignUp' element={<Signup/>} />
     </Routes>
     </BrowserRouter>
+
   );
 }
 
