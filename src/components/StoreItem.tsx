@@ -1,6 +1,9 @@
 import {Card, Button} from "react-bootstrap";
 import {formatCurrency} from "../utilities/formatCurrency";
 import {useShoppingCart} from "../Context/ShoppingCartContext"
+import { User as FirebaseUser } from "firebase/auth";
+import {useState, useEffect} from "react"
+import { auth } from "../firebase";
 
 type StoreItemProps = {
     // id: number
@@ -25,7 +28,16 @@ export function StoreItem({id, category, description, image, price, title, amoun
       } = useShoppingCart();
 
       const quantity = getItemQuantity(id);
+      const [user, setUser] = useState<FirebaseUser | null>(null);
 
+      useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((FirebaseUser) => {
+          setUser(FirebaseUser);
+        });
+    
+        return unsubscribe;
+      }, []);
+    {console.log(user,"this is user")}
     return (<Card className="h-100">
         <Card.Img 
         variant="top" 
@@ -41,7 +53,7 @@ export function StoreItem({id, category, description, image, price, title, amoun
             </Card.Title>
             <div className="mt-auto">
                 {quantity === 0 ? (
-                    <Button className="w-100" onClick={()=> increaseCartQuantity(id)}>+ Add To Cart</Button>
+                    <Button className="w-100" onClick={()=> {user !== null ? increaseCartQuantity(id):alert("Login Please")}}>+ Add To Cart</Button>
                 ) : (
                 <div className="d-flex align-items-center flex-column"
                  style={{gap : ".5rem"}}>
