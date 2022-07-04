@@ -29,6 +29,9 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
               }, 0)
             )}
           </div>
+          <div className="ms-auto fw-bold">
+            {cartItems.length === 0 ? ('Cart is Empty'):('')}
+          </div>
         </Stack>
       </Offcanvas.Body>
     </Offcanvas>
