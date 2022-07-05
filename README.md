@@ -1,46 +1,63 @@
-# Getting Started with Create React App
+# 🏪E-commerce Shop
+> E-commerce project built with React and TypeScript.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> API used for this project [_here_](https://fakestoreapi.com/).
 
-## Available Scripts
+## Table of Contents
+* [General Info](#general-information)
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+* [Screenshots](#screenshots)
+* [Setup](#setup)
+* [Project Status](#project-status)
+* [Contact](#contact)
+<!-- * [License](#license) -->
 
-In the project directory, you can run:
 
-### `npm start`
+## General Information
+E-commerce shop with different types of products. Wide range of filtering items functionality.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies Used
+- React - version 18.1.0
+- Redux - version 4.2.0
+- React-redux - version 8.0.2
+- TypeScript - version 4.7.4
+- Axios - version 0.27.2
+- Bootstrap - version 5.1.3
+- React-bootstrap - version 2.4.0
+- Webpack - version 5.72.0
+- Firebase - version 9.8.3
+- Prettier - version 2.6.2
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
+Main features of the app:
+- Filtering products by categories
+- Sort by price
+- Product page
+- Adding products to cart
+- Increasing, decreasing count of product with auto calculating total sum of order
+- Removing products from cart
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<!-- ## Screenshots
+<img src="./demo/demo_1.png" width="800" title="hover text">
+<img src="./demo/demo_2.png" width="800" title="hover text">
+<img src="./demo/demo_3.png" width="800" title="hover text">
+ -->
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Setup
+Run application in development environment:
+```
+npm install
+npm start
+```
+Create production build:
+```
+npm run build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Status
+Project is: _completed_
