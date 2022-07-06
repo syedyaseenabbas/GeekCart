@@ -6,20 +6,19 @@ import {useState, useEffect} from "react"
 import { auth } from "../firebase";
 
 type StoreItemProps = {
-    // id: number
-    // name: string
-    // price: number
-    // imgUrl: string
-    id: number;
-    category: string;
-    description: string;
-    image: string;
-    price: number;
-    title: string;
-    amount: number;
+    id: number
+    title: string
+    price: number
+    description: string
+    category: string
+    image: string
+    rating: {
+       rate: number
+       count: number
+    }
 }
 
-export function StoreItem({id, category, description, image, price, title, amount}:StoreItemProps) {
+export function StoreItem({id,title,price,description,category,image,rating}:StoreItemProps) {
     const {
         getItemQuantity,
         increaseCartQuantity,
@@ -37,8 +36,9 @@ export function StoreItem({id, category, description, image, price, title, amoun
     
         return unsubscribe;
       }, []);
-    {console.log(user,"this is user")}
-    return (<Card className="h-100">
+      
+    return (
+    <Card className="h-100">
         <Card.Img 
         variant="top" 
         src={image} 
