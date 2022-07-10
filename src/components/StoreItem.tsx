@@ -5,7 +5,7 @@ import { User as FirebaseUser } from "firebase/auth";
 import {useState, useEffect} from "react"
 import { auth } from "../firebase";
 import {IProduct} from "../types/index"
-
+import { useNavigate } from 'react-router-dom'
 
 export function StoreItem({id, category, description, image, price, title,rating}:IProduct) {
     const {
@@ -25,18 +25,24 @@ export function StoreItem({id, category, description, image, price, title,rating
     
         return unsubscribe;
       }, []);
+      const navigate = useNavigate()
+
+      const navigateToProduct = () => {
+        navigate(`/product/${id}`)
+     }
+
 
     return (<Card className="h-100">
-        <Card.Img 
+        <Card.Img onClick={navigateToProduct}
         variant="top" 
         src={image} 
         height="300px" 
         width="300px"
-        style={{objectFit: "contain"}} 
+        style={{objectFit: "contain", cursor:"pointer"}} 
         />
         <Card.Body className="d-flex flex-column">
             <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
-                <span className="fs-2">{title}</span>
+                <span onClick={navigateToProduct} style={{cursor:"pointer"}} className="fs-2">{title}</span>
                 <span className="ms-2 text-muted">{formatCurrency(price)}</span>
             </Card.Title>
             <div className="mt-auto">

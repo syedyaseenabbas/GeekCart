@@ -6,10 +6,6 @@ import { useAppSelector } from "../hooks";
 
 const Home: React.FC = () => {
   const { filteredProducts } = useAppSelector((state) => state.productReducers)
-  var array = filteredProducts.slice().sort((a, b) => b.price - a.price)
-  array = array.sort((a, b) => a.price - b.price)
-
-  console.log(array)
   return (
     <div>
       <Navbar />
