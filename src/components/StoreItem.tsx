@@ -4,22 +4,10 @@ import {useShoppingCart} from "../Context/ShoppingCartContext"
 import { User as FirebaseUser } from "firebase/auth";
 import {useState, useEffect} from "react"
 import { auth } from "../firebase";
+import {IProduct} from "../types/index"
 
-type StoreItemProps = {
-    // id: number
-    // name: string
-    // price: number
-    // imgUrl: string
-    id: number;
-    category: string;
-    description: string;
-    image: string;
-    price: number;
-    title: string;
-    amount: number;
-}
 
-export function StoreItem({id, category, description, image, price, title, amount}:StoreItemProps) {
+export function StoreItem({id, category, description, image, price, title,rating}:IProduct) {
     const {
         getItemQuantity,
         increaseCartQuantity,
@@ -37,7 +25,7 @@ export function StoreItem({id, category, description, image, price, title, amoun
     
         return unsubscribe;
       }, []);
-    {console.log(user,"this is user")}
+
     return (<Card className="h-100">
         <Card.Img 
         variant="top" 
