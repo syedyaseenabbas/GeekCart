@@ -42,7 +42,25 @@ export const productSlice = createSlice({
                     (products) =>action.payload.includes(products.category))
             }
         },
-
+        sortByPrice(state,action:PayloadAction<string>){
+            if(action.payload === "lowest")
+            {
+                state.filteredProducts = state.products.slice().sort((a, b) => a.price - b.price)
+            }
+            if(action.payload === "highest"){
+                state.filteredProducts = state.products.slice().sort((a, b) => b.price - a.price)
+            }
+            if(action.payload === "A-Z"){
+                state.filteredProducts = state.products.sort((a, b) => {
+                    return a.title.localeCompare(b.title)
+                  })
+            }
+            if(action.payload === "Z-A"){
+                state.filteredProducts = state.products.sort((a, b) => {
+                    return b.title.localeCompare(a.title)
+                  })
+            }
+        }
     }
 })
 
@@ -50,7 +68,8 @@ export const {
     startFetching,
     successFetching,
     errorFetching,
-    filterByCategory
+    filterByCategory,
+    sortByPrice
 } = productSlice.actions
 
 export default productSlice.reducer

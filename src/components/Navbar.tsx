@@ -3,6 +3,7 @@ import { Navbar as NavbarBs, Container, Nav, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useShoppingCart } from "../Context/ShoppingCartContext";
 import CategoryFilter from "./CategoryFilter";
+import SortByPrice from "./SortByPrice";
 
 const Navbar: React.FC = () => {
   const { openCart, cartQuantity } = useShoppingCart();
@@ -20,6 +21,7 @@ const Navbar: React.FC = () => {
             Login
           </Nav.Link>
         </Nav>
+        <SortByPrice/>
         <CategoryFilter/>
         <Button
           onClick={openCart}
