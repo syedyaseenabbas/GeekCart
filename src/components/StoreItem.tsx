@@ -1,21 +1,48 @@
+import React from "react"
 import {Card, Button} from "react-bootstrap";
 import {formatCurrency} from "../utilities/formatCurrency";
-import {useShoppingCart} from "../Context/ShoppingCartContext"
 import { User as FirebaseUser } from "firebase/auth";
 import {useState, useEffect} from "react"
 import { auth } from "../firebase";
 import {IProduct} from "../types/index"
 import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../hooks'
+import {
+    decreaseCount,
+    increaseCount,
+    removeProduct,
+    toggleItemRemoved,
+    addProduct,
+ } from '../store/carts/cart.slice'
 
-export function StoreItem({id, category, description, image, price, title,rating}:IProduct) {
-    const {
-        getItemQuantity,
-        increaseCartQuantity,
-        decreaseCartQuantity,
-        removeFromCart,
-      } = useShoppingCart();
+ interface storeItemProps{
+    product : IProduct,
+ }
 
-      const quantity = getItemQuantity(id);
+export const StoreItem:React.FC<storeItemProps> = ({product}) => {
+
+      const dispatch = useAppDispatch()
+      const [count, setCount] = useState(1)
+    //   const handleClose = () => {
+    //      setOpen(false)
+    //   }
+      const addToCart = () => {
+        // console.log(product)
+         dispatch(addProduct({  product, quantity: count }))
+        //  dispatch(toggleItemAdded(true))
+        //  setOpen(false)
+      }
+      const increase = () => {
+        setCount((count) => count + 1)
+        dispatch(increaseCount({product, quantity:count}))
+     }
+     const decrease = () => {
+        if (count > 1) {
+           setCount((count) => count - 1)
+           dispatch(decreaseCount({product, quantity:count}))
+        }
+     }
+
       const [user, setUser] = useState<FirebaseUser | null>(null);
 
       useEffect(() => {
@@ -28,40 +55,25 @@ export function StoreItem({id, category, description, image, price, title,rating
       const navigate = useNavigate()
 
       const navigateToProduct = () => {
-        navigate(`/product/${id}`)
+        navigate(`/product/${product.id}`)
      }
 
 
     return (<Card className="h-100">
         <Card.Img onClick={navigateToProduct}
         variant="top" 
-        src={image} 
+        src={product.image} 
         height="300px" 
         width="300px"
         style={{objectFit: "contain", cursor:"pointer"}} 
         />
         <Card.Body className="d-flex flex-column">
             <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
-                <span onClick={navigateToProduct} style={{cursor:"pointer"}} className="fs-2">{title}</span>
-                <span className="ms-2 text-muted">{formatCurrency(price)}</span>
+                <span onClick={navigateToProduct} style={{cursor:"pointer"}} className="fs-2">{product.title}</span>
+                <span className="ms-2 text-muted">{formatCurrency(product.price)}</span>
             </Card.Title>
             <div className="mt-auto">
-                {quantity === 0 ? (
-                    <Button className="w-100" onClick={()=> {user !== null ? increaseCartQuantity(id):alert("Login Please")}}>+ Add To Cart</Button>
-                ) : (
-                <div className="d-flex align-items-center flex-column"
-                 style={{gap : ".5rem"}}>
-
-                <div className="d-flex align-items-center justify-content-center" 
-                style={{gap : ".5rem"}}>
-                        <Button onClick={()=> decreaseCartQuantity(id)}>-</Button>
-                        <div>
-                            <span className="fs-3">{quantity}</span> in cart
-                        </div>
-                        <Button onClick={()=> increaseCartQuantity(id)}>+</Button>
-                    </div>
-                       <Button onClick={()=> removeFromCart(id)} variant="danger" size="sm">Remove</Button>
-                    </div>)}
+                <Button className="w-100" onClick={()=> {user !== null ? addToCart():alert("Login Please")}}>+ Add To Cart</Button>
             </div>
         </Card.Body>
     </Card>
