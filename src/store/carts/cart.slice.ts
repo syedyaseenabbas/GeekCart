@@ -23,10 +23,21 @@ export const cartSlice = createSlice({
    initialState,
    reducers: {
       addProduct(state, action: PayloadAction<CartItem>) {
-         state.cartItems.push(action.payload)
-         if (state.isEmpty) state.isEmpty = false
-         state.totalSum +=
-            action.payload.quantity * action.payload.product.price
+         const index = state.cartItems.findIndex((ele) => ele.product.id === action.payload.product.id)
+         if(index === -1)
+         {
+            state.cartItems.push(action.payload)
+            if (state.isEmpty) state.isEmpty = false
+            state.totalSum +=
+               action.payload.quantity * action.payload.product.price
+         }
+         else
+         {
+            state.cartItems[index].quantity += 1
+            state.totalSum += action.payload.product.price
+         }
+         // state.totalSum +=
+         //    action.payload.quantity * action.payload.product.price
       },
       removeProduct(state, action: PayloadAction<CartItem>) {
          state.cartItems = state.cartItems.filter(
