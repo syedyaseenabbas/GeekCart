@@ -17,10 +17,10 @@ export default function SortByPrice() {
 
   React.useEffect(() => {
     dispatch(sortByPrice(priceFilter))
-}, [priceFilter]);
+  }, [priceFilter]);
 
   return (
-    <Box sx={{ minWidth: 100 }} mx={{width:90}}>
+    <Box sx={{ minWidth: 100 }} mx={{ width: 90 }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Sort By</InputLabel>
         <Select
