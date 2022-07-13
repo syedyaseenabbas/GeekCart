@@ -1,13 +1,13 @@
-import * as React from 'react';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import ListItemText from '@mui/material/ListItemText';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Checkbox from '@mui/material/Checkbox';
-import {useAppDispatch} from "../hooks/index"
-import {filterByCategory} from "../store/products/products.slice"
+import * as React from "react";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import ListItemText from "@mui/material/ListItemText";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Checkbox from "@mui/material/Checkbox";
+import { useAppDispatch } from "../hooks/index";
+import { filterByCategory } from "../store/products/products.slice";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -21,34 +21,34 @@ const MenuProps = {
 };
 
 const names = [
-  'All',
-  'electronics',
-  'jewelery',
+  "All",
+  "electronics",
+  "jewelery",
   "men's clothing",
   "women's clothing",
 ];
 
 export default function CategoryFilter() {
   const [personName, setPersonName] = React.useState<string[]>([]);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    setPersonName(typeof value === "string" ? value.split(",") : value);
   };
 
   React.useEffect(() => {
-    dispatch(filterByCategory(personName))
-}, [personName]);
+    dispatch(filterByCategory(personName));
+  }, [personName]);
 
   return (
     <div>
       <FormControl sx={{ m: 1, width: 165 }}>
-        <InputLabel id="demo-multiple-checkbox-label">Select Category</InputLabel>
+        <InputLabel id="demo-multiple-checkbox-label">
+          Select Category
+        </InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
@@ -56,7 +56,7 @@ export default function CategoryFilter() {
           value={personName}
           onChange={handleChange}
           input={<OutlinedInput label="Tag" />}
-          renderValue={(selected) => selected.join(', ')}
+          renderValue={(selected) => selected.join(", ")}
           MenuProps={MenuProps}
         >
           {names.map((name) => (
