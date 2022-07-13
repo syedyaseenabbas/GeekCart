@@ -14,7 +14,7 @@ const App:React.FC = ()=> {
    },[])
 
   return (
-    
+    <>
     <BrowserRouter>
     <Routes>
         <Route path='/' element={<Home/>} />
@@ -23,7 +23,7 @@ const App:React.FC = ()=> {
         <Route path={'/product/:productId'} element={<Product />} />
     </Routes>
     </BrowserRouter>
-
+    </>
   );
 }
 

@@ -9,7 +9,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
-const Login:React.FC = () => {
+const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -20,9 +20,9 @@ const Login:React.FC = () => {
     e.preventDefault();
     setError("");
     try {
-      await signInWithPopup( auth, googleAuthProvider);
+      await signInWithPopup(auth, googleAuthProvider);
       navigate("/");
-    } catch (err:any) {
+    } catch (err: any) {
       setError(err.message);
     }
   };
@@ -31,9 +31,9 @@ const Login:React.FC = () => {
     e.preventDefault();
     setError("");
     try {
-      await signInWithEmailAndPassword( auth, email, password );
+      await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
-    } catch (err:any) {
+    } catch (err: any) {
       setError(err.message);
     }
   };
@@ -68,9 +68,9 @@ const Login:React.FC = () => {
         </Form>
         <hr />
         <div>
-        <Button onClick={gooleSignIn} variant="primary" value="Submit">
-              Google Login
-            </Button>
+          <Button onClick={gooleSignIn} variant="primary" value="Submit">
+            Google Login
+          </Button>
         </div>
       </div>
       <div className="p-4 box mt-3 text-center">
