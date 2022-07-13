@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
           </Nav>
           <SortByPrice />
           <CategoryFilter />
-          <Button
+          <Button style={{ height: 55 }}
             onClick={() => dispatch(toggleCart(true))}
             startIcon={<ShoppingCartIcon />}
             variant={'outlined'}
