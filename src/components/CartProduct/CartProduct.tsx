@@ -1,17 +1,12 @@
-import React, { FC, useState } from 'react'
-import './cartProduct.css'
+import { FC, useState } from 'react'
 import { Button, ButtonGroup, Fab } from '@mui/material'
 import RemoveIcon from '@mui/icons-material/Remove'
 import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { CartItem } from '../../types'
 import { useAppDispatch } from '../../hooks'
-import {
-   decreaseCount,
-   increaseCount,
-   removeProduct,
-   toggleItemRemoved,
-} from '../../store/carts/cart.slice'
+import { decreaseCount,increaseCount,removeProduct,toggleItemRemoved } from '../../store/carts/cart.slice'
+import './cartProduct.css'
 
 interface CartItemProps {
    product: CartItem

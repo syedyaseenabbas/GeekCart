@@ -6,7 +6,6 @@ import Signup from './components/SignUp';
 import {fetchProducts} from "./store/products/products.action"
 import { useAppDispatch } from './hooks';
 import Product from './pages/Product/Product'
-import Cart from './components/Cart/Cart';
 
 const App:React.FC = ()=> {
    const dispatch = useAppDispatch()
@@ -16,7 +15,6 @@ const App:React.FC = ()=> {
 
   return (
     <>
-    {/* <Cart/> */}
     <BrowserRouter>
     <Routes>
         <Route path='/' element={<Home/>} />

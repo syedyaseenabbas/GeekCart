@@ -47,7 +47,7 @@ export default function CategoryFilter() {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 180 }}>
+      <FormControl sx={{ m: 1, width: 165 }}>
         <InputLabel id="demo-multiple-checkbox-label">Select Category</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"

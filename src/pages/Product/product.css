@@ -14,20 +14,21 @@
     /*width: 500px;*/
  }
  .productImg {
-    width: 500px;
-    height: 500px;
+    width: 80%;
+    /* height: 500px; */
     object-fit: contain;
     /*object-position: left;*/
  }
- .productDescription {
-    width: 700px;
- }
+ /* .productDescription {
+    /* width: 700px; */
+
+ /* } */ */
  .productTitle {
     margin-top: 20px;
  }
  .productText {
     margin: 20px 0 20px 0;
-    width: 500px;
+    /* width: 500px; */
     color: gray;
  }
  .productPrice {
