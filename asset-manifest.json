@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/GeekCart/static/css/main.85ec9609.css",
+    "main.js": "/GeekCart/static/js/main.b2ec64af.js",
+    "index.html": "/GeekCart/index.html",
+    "main.85ec9609.css.map": "/GeekCart/static/css/main.85ec9609.css.map",
+    "main.b2ec64af.js.map": "/GeekCart/static/js/main.b2ec64af.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.85ec9609.css",
+    "static/js/main.b2ec64af.js"
+  ]
+}
