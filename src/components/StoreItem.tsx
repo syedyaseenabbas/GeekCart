@@ -20,7 +20,7 @@ export const StoreItem: React.FC<storeItemProps> = ({ product }) => {
   const navigate = useNavigate();
   const [count, setCount] = useState(1);
   const [user, setUser] = useState<FirebaseUser | null>(null);
-  const { cartItems, itemAdded } = useAppSelector((state) => state.cartReducer);
+  const { cartItems } = useAppSelector((state) => state.cartReducer);
 
   const addToCart = () => {
     dispatch(addProduct({ product, quantity: count }));
