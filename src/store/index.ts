@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import productReducers from "../store/products/products.slice";
+import productReducers from "./products/products.slice";
 import cartReducer from "./carts/cart.slice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
@@ -14,6 +14,7 @@ const rootReducer = combineReducers({
 });
 
 const persistConfig = {
+  timeout: 100,
   key: "root",
   storage,
   stateReconciles: hardSet as (inboundState: CombinedState) => CombinedState,

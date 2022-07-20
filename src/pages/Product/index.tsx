@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../Hooks";
 import { Button, Chip, Rating } from "@mui/material";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../Components/Navbar";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import Cart from "../../components/Cart/Cart";
-import { addProduct } from "../../store/carts/cart.slice";
-import { auth } from "../../firebase";
+import Cart from "../../Components/Cart";
+import { addProduct } from "../../Store/carts/cart.slice"
+import { auth } from "../../Firebase";
 import { User as FirebaseUser } from "firebase/auth";
 import "./product.css";
 
@@ -31,7 +31,7 @@ const Product: FC = () => {
   }, []);
   return (
     <>
-      <Navbar />
+      <Navbar showFilter={false} />
       <div className={"product"}>
         <div
           className="productWrapper"
@@ -47,7 +47,7 @@ const Product: FC = () => {
           <div
             className={"productDescription"}
             style={{
-              flex: 2,
+              flex: 1,
               display: "flex",
               flexDirection: "column",
               maxWidth: "750px",
