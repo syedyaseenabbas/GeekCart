@@ -24,7 +24,7 @@ const Signup: React.FC = () => {
   return (
     <>
       <Navbar className="justify-content-between" bg="dark" variant="dark">
-        <Navbar.Brand>User Authentication</Navbar.Brand>
+        <Navbar.Brand style={{ paddingLeft: "20px" }}>User Authentication</Navbar.Brand>
       </Navbar>
       <Container style={{ maxWidth: "500px" }} fluid>
         <Form className="mt-4">
@@ -33,8 +33,8 @@ const Signup: React.FC = () => {
             <Form.Label>Email</Form.Label>
             <Form.Control ref={emailRef} type="email" placeholder="email" />
           </Form.Group>
-          <Form.Group controlId="formPassword">
-            <Form.Label>Password</Form.Label>
+          <Form.Group style={{ marginBottom: "8px" }} controlId="formPassword">
+            <Form.Label style={{ marginTop: "0.8rem" }}>Password</Form.Label>
             <Form.Control ref={passwordRef} type="password" placeholder="password" />
           </Form.Group>
           <Row>
@@ -43,8 +43,8 @@ const Signup: React.FC = () => {
                 Sign Up
               </Button>
             </Col>
-            <Col xs={8} className="d-flex justify-content-end align-items-center">
-              Already have an account? <Link to="/Login">Login</Link>
+            <Col style={{ marginTop: "11px" }} xs={8} className="d-flex justify-content-end align-items-center">
+              Already have an account? <Link style={{ paddingLeft: "5px" }} to="/Login">Login</Link>
             </Col>
           </Row>
         </Form>

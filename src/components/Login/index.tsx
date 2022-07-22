@@ -1,7 +1,6 @@
-import React, { useState, MouseEvent } from "react";
+import React, { useState, MouseEvent, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Form, Alert } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Form, Navbar, Row, Alert } from "react-bootstrap";
 import { auth } from "../../Firebase";
 import {
   signInWithEmailAndPassword,
@@ -10,8 +9,8 @@ import {
 } from "firebase/auth";
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const googleAuthProvider = new GoogleAuthProvider();
@@ -31,51 +30,45 @@ const Login: React.FC = () => {
     e.preventDefault();
     setError("");
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, emailRef.current!.value, passwordRef.current!.value);
       navigate("/");
     } catch (err: any) {
       setError(err.message);
     }
   };
 
+
   return (
     <>
-      <div className="p-4 box">
-        <h2 className="mb-3">Login</h2>
-        {error && <Alert variant="danger">{error}</Alert>}
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control
-              type="email"
-              placeholder="Email address"
-              onChange={(e) => setEmail(e.target.value)}
-            />
+      <Navbar className="justify-content-between" bg="dark" variant="dark">
+        <Navbar.Brand style={{ paddingLeft: "20px" }}>User Authentication</Navbar.Brand>
+      </Navbar>
+      <Container style={{ maxWidth: "500px" }} fluid>
+        <Form className="mt-4">
+          <Form.Group controlId="formEmail">
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form.Label>Email</Form.Label>
+            <Form.Control ref={emailRef} type="email" placeholder="email" />
           </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
+          <Form.Group style={{ marginBottom: "8px" }} controlId="formPassword">
+            <Form.Label style={{ marginTop: "0.8rem" }}>Password</Form.Label>
+            <Form.Control ref={passwordRef} type="password" placeholder="password" />
           </Form.Group>
-
-          <div className="d-grid gap-2">
-            <Button onClick={signIn} variant="primary" value="Submit">
-              Log In
+          <Row>
+            <Col xs={4} style={{ width: "100px" }}>
+              <Button onClick={signIn} className="mt-10" type="button" style={{ background: "#2b8be5", marginTop: "10px" }}>
+                Log In
+              </Button>
+            </Col>
+            <Button className="mt-10" onClick={gooleSignIn} type="button" style={{ background: "#2b8be5", width: "130px", marginTop: "10px" }}>
+              Google Login
             </Button>
-          </div>
+            <Col style={{ marginTop: "11px", width: "275px", marginLeft: "250px" }} xs={8} className="d-flex justify-content-end align-items-center">
+              Don't have an account? <Link style={{ paddingLeft: "5px" }} to="/SignUp">SignUp</Link>
+            </Col>
+          </Row>
         </Form>
-        <hr />
-        <div>
-          <Button onClick={gooleSignIn} variant="primary" value="Submit">
-            Google Login
-          </Button>
-        </div>
-      </div>
-      <div className="p-4 box mt-3 text-center">
-        Don't have an account? <Link to="/signup">Sign up</Link>
-      </div>
+      </Container>
     </>
   );
 };
