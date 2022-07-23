@@ -19,8 +19,7 @@ const Signup: React.FC = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const createAccount = async (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const createAccount = async () => {
     setError("");
     try {
       await createUserWithEmailAndPassword(
@@ -60,8 +59,7 @@ const Signup: React.FC = () => {
           return errors;
         }}
         onSubmit={(values) => {
-          createUserWithEmailAndPassword(auth, values.email, values.password);
-          navigate("/Login");
+          createAccount();
         }}
       >
         {({
@@ -73,69 +71,67 @@ const Signup: React.FC = () => {
           handleSubmit,
           isSubmitting,
         }) => (
-          <form onSubmit={handleSubmit}>
-            <Container style={{ maxWidth: "500px" }} fluid>
-              <Form className="mt-4">
-                <Form.Group controlId="formEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    ref={emailRef}
-                    type="email"
-                    name="email"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.email}
-                    placeholder="email"
-                  />
-                  <div style={{ color: "red" }}>
-                    {errors.email && touched.email && errors.email}
-                  </div>
-                </Form.Group>
-                <Form.Group
-                  style={{ marginBottom: "8px" }}
-                  controlId="formPassword"
-                >
-                  <Form.Label style={{ marginTop: "0.8rem" }}>
-                    Password
-                  </Form.Label>
-                  <Form.Control
-                    ref={passwordRef}
-                    type="password"
-                    name="password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.password}
-                    placeholder="password"
-                  />
-                  <div style={{ color: "red" }}>
-                    {errors.password && touched.password && errors.password}
-                  </div>
-                </Form.Group>
-                <Row>
-                  <Col xs={4}>
-                    <Button
-                      onClick={createAccount}
-                      className="mt-10"
-                      type="button"
-                      style={{ background: "#2b8be5", marginTop: "10px" }}
-                    >
-                      Sign Up
-                    </Button>
-                  </Col>
-                  <Col
-                    style={{ marginTop: "11px" }}
-                    xs={8}
-                    className="d-flex justify-content-end align-items-center"
+          <Container style={{ maxWidth: "500px" }} fluid>
+            <Form className="mt-4">
+              <Form.Group controlId="formEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  ref={emailRef}
+                  type="email"
+                  name="email"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                  placeholder="email"
+                />
+                <div style={{ color: "red" }}>
+                  {errors.email && touched.email && errors.email}
+                </div>
+              </Form.Group>
+              <Form.Group
+                style={{ marginBottom: "8px" }}
+                controlId="formPassword"
+              >
+                <Form.Label style={{ marginTop: "0.8rem" }}>
+                  Password
+                </Form.Label>
+                <Form.Control
+                  ref={passwordRef}
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                  placeholder="password"
+                />
+                <div style={{ color: "red" }}>
+                  {errors.password && touched.password && errors.password}
+                </div>
+              </Form.Group>
+              <Row>
+                <Col xs={4}>
+                  <Button
+                    onClick={() => handleSubmit()}
+                    className="mt-10"
+                    type="button"
+                    style={{ background: "#2b8be5", marginTop: "10px" }}
                   >
-                    Already have an account?{" "}
-                    <Link style={{ paddingLeft: "5px" }} to="/Login">
-                      Login
-                    </Link>
-                  </Col>
-                </Row>
-              </Form>
-            </Container>
-          </form>
+                    Sign Up
+                  </Button>
+                </Col>
+                <Col
+                  style={{ marginTop: "11px" }}
+                  xs={8}
+                  className="d-flex justify-content-end align-items-center"
+                >
+                  Already have an account?{" "}
+                  <Link style={{ paddingLeft: "5px" }} to="/Login">
+                    Login
+                  </Link>
+                </Col>
+              </Row>
+            </Form>
+          </Container>
         )}
       </Formik>
     </>
