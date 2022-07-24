@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useRef, MouseEvent, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Button,
   Col,
@@ -32,6 +32,10 @@ const Signup: React.FC = () => {
       setError(err.message);
     }
   };
+  interface Err {
+    email?: string
+    password?: string
+  }
 
   return (
     <>
@@ -43,7 +47,7 @@ const Signup: React.FC = () => {
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={(values) => {
-          const errors = { email: "", password: "" };
+          const errors: Err = {};
           if (!values.email) {
             errors.email = "Required";
           } else if (
@@ -59,7 +63,7 @@ const Signup: React.FC = () => {
           return errors;
         }}
         onSubmit={(values) => {
-          createAccount();
+          createAccount()
         }}
       >
         {({
