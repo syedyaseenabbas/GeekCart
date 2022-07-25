@@ -5,18 +5,21 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import CartProduct from "../CartProduct";
 import AlertComponent from "../Alert";
 import CloseIcon from "@material-ui/icons/Close";
+import { useNavigate } from "react-router";
 import "./cart.css";
 
 const Cart = () => {
   const { isOpen, cartItems, isEmpty, totalSum, itemRemoved } = useAppSelector(
     (state) => state.cartReducer
   );
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const handleClose = () => {
     dispatch(toggleCart(false));
   };
   const handleSubmit = () => {
     dispatch(toggleCart(false));
+    navigate('/SuccessOrder')
   };
   return (
     <div className={"cart"}>

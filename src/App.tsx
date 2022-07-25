@@ -7,6 +7,7 @@ import Signup from "./Components/SignUp";
 import { fetchProducts } from "./Store/products/products.action";
 import { useAppDispatch } from "./Hooks";
 import Product from "./Pages/Product";
+import SuccessOrder from "./Pages/SuccessOrder";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<Signup />} />
+          <Route path="/SuccessOrder" element={<SuccessOrder />} />
           <Route path={"/product/:productId"} element={<Product />} />
         </Routes>
       </BrowserRouter>
