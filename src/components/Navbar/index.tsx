@@ -9,7 +9,7 @@ import { Button } from "@mui/material";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbars from "react-bootstrap/Navbar";
-import BackgroundLetterAvatars from "../Avatar"
+import BackgroundLetterAvatars from "../Avatar";
 import { getAuth, signOut } from "firebase/auth";
 import { User as FirebaseUser } from "firebase/auth";
 
@@ -31,9 +31,9 @@ const Navbar: React.FC<NavbarProp> = ({ showFilter }) => {
     return unsubscribe;
   }, []);
   const HandleLogout = () => {
-    signOut(auth)
-    navigate('/')
-  }
+    signOut(auth);
+    navigate("/");
+  };
 
   return (
     <>
@@ -55,10 +55,11 @@ const Navbar: React.FC<NavbarProp> = ({ showFilter }) => {
                   Login
                 </Nav.Link>
               </Nav>
-            ) : (<>
-              <Button onClick={HandleLogout}>Logout</Button>
-              <BackgroundLetterAvatars />
-            </>
+            ) : (
+              <>
+                <Button onClick={HandleLogout}>Logout</Button>
+                <BackgroundLetterAvatars />
+              </>
             )}
             {showFilter === true && (
               <>

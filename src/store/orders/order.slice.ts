@@ -20,9 +20,6 @@ export const orderSlice = createSlice({
     addProduct(state, action: PayloadAction<OrderItem>) {
       state.OrderItems.unshift(action.payload);
       if (state.isEmpty) state.isEmpty = false;
-      //   state.totalSum +=
-      //     action.payload.cartItem.quantity *
-      //     action.payload.cartItem.product.price;
     },
   },
 });

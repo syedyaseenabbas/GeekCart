@@ -6,12 +6,9 @@ import { useAppSelector } from "../../Hooks";
 import Cart from "../../Components/Cart";
 
 const Home: React.FC = () => {
-  const { filteredProducts } = useAppSelector((state) => state.productReducers)
+  const { filteredProducts } = useAppSelector((state) => state.productReducers);
 
-  if (filteredProducts.length === 0)
-    return (
-      <div>Loading</div>
-    )
+  if (filteredProducts.length === 0) return <div>Loading</div>;
   return (
     <div>
       <Navbar showFilter={true} />

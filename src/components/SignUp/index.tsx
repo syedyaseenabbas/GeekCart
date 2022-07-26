@@ -33,8 +33,8 @@ const Signup: React.FC = () => {
     }
   };
   interface Err {
-    email?: string
-    password?: string
+    email?: string;
+    password?: string;
   }
 
   return (
@@ -63,7 +63,7 @@ const Signup: React.FC = () => {
           return errors;
         }}
         onSubmit={(values) => {
-          createAccount()
+          createAccount();
         }}
       >
         {({

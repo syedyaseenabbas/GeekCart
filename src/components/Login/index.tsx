@@ -19,8 +19,8 @@ import {
 } from "firebase/auth";
 
 interface Err {
-  email?: string
-  password?: string
+  email?: string;
+  password?: string;
 }
 
 const Login: React.FC = () => {
@@ -81,7 +81,7 @@ const Login: React.FC = () => {
           return errors;
         }}
         onSubmit={(values) => {
-          signIn()
+          signIn();
         }}
       >
         {({

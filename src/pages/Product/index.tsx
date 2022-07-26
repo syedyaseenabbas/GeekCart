@@ -5,7 +5,7 @@ import { Button, Chip, Rating } from "@mui/material";
 import Navbar from "../../Components/Navbar";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Cart from "../../Components/Cart";
-import { addProduct } from "../../Store/carts/cart.slice"
+import { addProduct } from "../../Store/carts/cart.slice";
 import { auth } from "../../Firebase";
 import { User as FirebaseUser } from "firebase/auth";
 import { useNavigate } from "react-router-dom";

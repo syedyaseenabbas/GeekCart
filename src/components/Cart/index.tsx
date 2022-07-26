@@ -14,10 +14,10 @@ const Cart = () => {
   const { isOpen, cartItems, isEmpty, totalSum, itemRemoved } = useAppSelector(
     (state) => state.cartReducer
   );
-  const { OrderItems } = useAppSelector((state) => state.orderReducer)
+  const { OrderItems } = useAppSelector((state) => state.orderReducer);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [date, setDate] = useState("")
+  const [date, setDate] = useState("");
   const handleClose = () => {
     dispatch(toggleCart(false));
   };
@@ -29,8 +29,8 @@ const Cart = () => {
     dispatch(toggleCart(false));
     const newDate = new Date().toLocaleString();
     setDate(newDate);
-    dispatch(addProduct({ cartItem: cartItems, date: newDate }))
-    navigate('/SuccessOrder')
+    dispatch(addProduct({ cartItem: cartItems, date: newDate }));
+    navigate("/SuccessOrder");
   };
 
   return (
