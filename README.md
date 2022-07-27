@@ -54,6 +54,7 @@ Main features of the app:
 <img src="./demo/demo_3.png" width="800" title="hover text">
 <img src="./demo/demo_4.png" width="800" title="hover text">
 <img src="./demo/demo_5.png" width="800" title="hover text">
+<img src="./demo/demo_6.png" width="800" title="hover text">
 
 ## Setup
 
