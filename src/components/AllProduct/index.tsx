@@ -44,8 +44,8 @@ export const StoreItem: React.FC<storeItemProps> = ({ product }) => {
         onClick={navigateToProduct}
         variant="top"
         src={product.image}
-        height="300px"
-        width="300px"
+        height="250px"
+        width="250px"
         style={{ objectFit: "contain", cursor: "pointer" }}
       />
       <Card.Body className="d-flex flex-column">
