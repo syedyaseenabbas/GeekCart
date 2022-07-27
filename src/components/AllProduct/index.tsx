@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { Button } from "@mui/material";
+import { Button, Rating } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { formatCurrency } from "../../Utilities";
 import { User as FirebaseUser } from "firebase/auth";
@@ -44,15 +44,15 @@ export const StoreItem: React.FC<storeItemProps> = ({ product }) => {
         onClick={navigateToProduct}
         variant="top"
         src={product.image}
-        height="250px"
-        width="250px"
-        style={{ objectFit: "contain", cursor: "pointer" }}
+        height="280px"
+        width="280px"
+        style={{ objectFit: "contain", cursor: "pointer", paddingTop: "10px" }}
       />
       <Card.Body className="d-flex flex-column">
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
           <span
             onClick={navigateToProduct}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", fontFamily: "Urbanist" }}
             className="fs-2"
           >
             {product.title}
@@ -62,6 +62,7 @@ export const StoreItem: React.FC<storeItemProps> = ({ product }) => {
           </span>
         </Card.Title>
         <div className="mt-auto">
+          <Rating name="read-only" value={product.rating.rate} readOnly />
           <Button
             disabled={
               !!cartItems.find((item) => item.product.id === product.id)
