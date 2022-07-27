@@ -12,7 +12,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <Navbar showFilter={true} />
-      <Row md={2} xs={1} lg={3} xl={3} className="g-3">
+      <Row md={2} xs={1} lg={3} xl={4} className="g-3">
         {filteredProducts.map((item) => (
           <Col key={item.id}>
             <StoreItem product={item} />
